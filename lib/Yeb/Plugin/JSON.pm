@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::JSON::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::JSON::VERSION = '0.001';
+  $Yeb::Plugin::JSON::VERSION = '0.002';
 }
 
 use Moo;
@@ -32,7 +32,7 @@ Yeb::Plugin::JSON
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.001';
+  $Yeb::Application::VERSION = '0.002';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -144,7 +144,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

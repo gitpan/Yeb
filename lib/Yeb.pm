@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.001';
+  $Yeb::VERSION = '0.002';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -29,7 +29,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -58,7 +58,7 @@ version 0.001
   1;
 
   package MyApp::Web::Test;
-  use Yeb;
+  use MyApp::Web;
 
   r "/json" => sub {
     json {

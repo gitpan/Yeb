@@ -3,8 +3,14 @@ Changes from 1739-09-20 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.001 at 2013-07-04 20:31:24 +0000
+version 0.002 at 2013-07-04 20:36:10 +0000
 ------------------------------------------
+
+  Change: 02f2426d94edd950aa18430b83db5cca5f11d52c
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-04 22:36:00 +0000
+
+    Very relevant doc patch 
 
   Change: 5613f89ca437edaf5d303dc19e55bfdd0774eca9
   Author: Torsten Raudssus <torsten@raudss.us>
