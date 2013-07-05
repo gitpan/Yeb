@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.006';
+  $Yeb::Application::VERSION = '0.007';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -20,9 +20,20 @@ use Hash::Merge qw( merge );
 
 use Web::Simple ();
 
+my $first_yep_application;
+
 has class => (
 	is => 'ro',
 	required => 1,
+);
+
+has first => (
+	is => 'ro',
+	lazy => 1,
+	builder => sub {
+		my ( $self ) = @_;
+		$first_yep_application->class eq $self->class ? 1 : 0;
+	},
 );
 
 has args => (
@@ -55,7 +66,11 @@ has current_dir => (
 has debug => (
 	is => 'ro',
 	lazy => 1,
-	builder => sub { $ENV{YEB_TRACE} || $ENV{YEB_DEBUG} ? 1 : 0 },
+	builder => sub {
+		my ( $self ) = @_;
+		return 0 unless $self->first;
+		return $ENV{YEB_TRACE} || $ENV{YEB_DEBUG} ? 1 : 0;
+	},
 );
 
 has package_stash => (
@@ -100,7 +115,7 @@ has yeb_functions => (
 
 			chain => sub {
 				my $class = $self->class_loader(shift);
-				$self->y($class)->chain;
+				$class->yeb->y($class)->chain;
 			},
 			load => sub {
 				my $class = $self->class_loader(shift);
@@ -205,6 +220,8 @@ sub merge_hashs {
 sub BUILD {
 	my ( $self ) = @_;
 
+	$first_yep_application = $self unless defined $first_yep_application;
+
 	$self->root;
 	$self->current_dir;
 
@@ -215,8 +232,7 @@ sub BUILD {
 	$self->package_stash->add_symbol('&dispatch_request',sub {
 		my ( undef, $env ) = @_;
 		$self->reset_context;
-		my $context = Yeb::Context->new( env => $env );
-		$self->cc($context);
+		$self->set_cc(Yeb::Context->new( env => $env ));
 		return $self->y_main->chain,
 			'/...' => sub {
 				$self->cc->status(500);
@@ -235,12 +251,13 @@ sub BUILD {
 	if ($self->debug) {
 		$self->add_middleware(Plack::Middleware::Debug->new);
 	}
+	my $funcs = [$self->package_stash->list_all_symbols];
 }
 
-has cc => (
-	is => 'rw',
-	clearer => 'reset_context',
-);
+my $cc;
+sub set_cc { shift; $cc = shift; }
+sub cc { $cc }
+sub reset_context { $cc = undef }
 sub current_context { shift->cc }
 
 sub yeb_import {
@@ -275,7 +292,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SUPPORT
 

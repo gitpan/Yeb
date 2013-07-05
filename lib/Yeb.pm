@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.006';
+  $Yeb::VERSION = '0.007';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -12,10 +12,13 @@ use warnings;
 
 use Yeb::Application;
 
-sub import { shift; Yeb::Application->new(
-	class => caller,
-	@_ ? ( args => [@_] ) : (),
-)}
+sub import { shift;
+  my ( $caller ) = caller;
+  Yeb::Application->new(
+    class => $caller,
+    @_ ? ( args => [@_] ) : (),
+  );
+}
 
 1;
 
@@ -29,7 +32,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SYNOPSIS
 
@@ -53,6 +56,10 @@ version 0.006
   r "/test/..." => sub {
     st stash_var => 1;
     chain 'Test';
+  };
+
+  r "/blog/..." => sub {
+    chain '+SomeOther::YebApp';
   };
 
   1;

@@ -20,6 +20,7 @@ t/htdocs/images/test.jpg
 t/htdocs/js/test.js
 t/htdocs/robots.txt
 t/htdocs/subdir/test.js
+t/lib/OtherWebTest.pm
 t/lib/WebTest.pm
 t/lib/WebTest/Bla.pm
 t/lib/WebTest/Static.pm

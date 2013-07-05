@@ -3,8 +3,21 @@ Changes from 1739-09-21 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.006 at 2013-07-05 20:35:33 +0000
+version 0.007 at 2013-07-05 23:13:28 +0000
 ------------------------------------------
+
+  Change: 3a8335feaa730f502a3434dcd6c25b7405938a64
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 01:12:52 +0000
+
+    Learned interesting things about Perl... ;) Now functionality for
+    adding "other yeb apps" clearly works! Still no debug, tho... 
+
+  Change: 6058721ac0c1c6a7d032cc13eb7e8c1a8109a612
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 00:18:23 +0000
+
+    WIP - adding option to include complete different apps via Chain 
 
   Change: 4efc5bc22e61302791451cf6694920fd4565fd99
   Author: Torsten Raudssus <torsten@raudss.us>

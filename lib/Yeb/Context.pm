@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Context::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Context::VERSION = '0.006';
+  $Yeb::Context::VERSION = '0.007';
 }
 # ABSTRACT: Storage for context of request
 
@@ -81,7 +81,7 @@ Yeb::Context - Storage for context of request
 
 =head1 VERSION
 
-version 0.006
+version 0.007
 
 =head1 SUPPORT
 
