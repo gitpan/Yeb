@@ -23,6 +23,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Yeb",
   "PREREQ_PM" => {
     "Class::Load" => "0.20",
+    "Hash::Merge" => "0.12",
     "Import::Into" => "1.001001",
     "Package::Stash" => "0.34",
     "Path::Tiny" => "0.024",
@@ -34,7 +35,7 @@ my %WriteMakefileArgs = (
     "Test::LoadAllModules" => "0.021",
     "Test::More" => "0.98"
   },
-  "VERSION" => "0.004",
+  "VERSION" => "0.005",
   "test" => {
     "TESTS" => "t/*.t"
   }

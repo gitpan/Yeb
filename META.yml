@@ -20,6 +20,7 @@ recommends:
   Text::Xslate: 2.0007
 requires:
   Class::Load: 0.20
+  Hash::Merge: 0.12
   Import::Into: 1.001001
   Package::Stash: 0.34
   Path::Tiny: 0.024
@@ -29,7 +30,7 @@ requires:
 resources:
   homepage: https://github.com/Getty/p5-yeb
   repository: https://github.com/Getty/p5-yeb.git
-version: 0.004
+version: 0.005
 x_Dist_Zilla:
   perl:
     version: 5.014002

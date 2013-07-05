@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.004';
+  $Yeb::VERSION = '0.005';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -29,7 +29,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.004
+version 0.005
 
 =head1 SYNOPSIS
 
@@ -184,6 +184,10 @@ Make a simple B<text/plain> response with the text given as parameter
 =item L<Yeb::Plugin::Session>
 
 Session management via L<Plack::Middleware::Session>
+
+=item L<Yeb::Plugin::Static>
+
+Static files via L<Plack::Middleware::Static>
 
 =item L<Yeb::Plugin::Xslate>
 
