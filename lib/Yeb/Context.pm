@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Context::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Context::VERSION = '0.002';
+  $Yeb::Context::VERSION = '0.003';
 }
 # ABSTRACT: Storage for context of request
 
@@ -64,6 +64,8 @@ sub response {
 }
 
 1;
+
+
 __END__
 =pod
 
@@ -73,7 +75,22 @@ Yeb::Context - Storage for context of request
 
 =head1 VERSION
 
-version 0.002
+version 0.003
+
+=head1 SUPPORT
+
+IRC
+
+  Join #web-simple on irc.perl.org. Highlight Getty for fast reaction :).
+
+Repository
+
+  http://github.com/Getty/p5-yeb
+  Pull request and additional contributors are welcome
+
+Issue Tracker
+
+  http://github.com/Getty/p5-yeb/issues
 
 =head1 AUTHOR
 

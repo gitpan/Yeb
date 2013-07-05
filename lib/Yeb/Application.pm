@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.002';
+  $Yeb::Application::VERSION = '0.003';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -13,6 +13,8 @@ use Import::Into;
 use Yeb::Context;
 use Yeb::Class;
 use Class::Load ':all';
+use Path::Tiny qw( path );
+use Plack::Middleware::Debug;
 
 use Web::Simple ();
 
@@ -30,6 +32,28 @@ has config => (
 	is => 'ro',
 	lazy => 1,
 	builder => sub {{}},
+);
+
+has root => (
+	is => 'ro',
+	lazy => 1,
+	builder => sub {
+		defined $ENV{YEB_ROOT}
+			? path($ENV{YEB_ROOT})
+			: path(".")
+	},
+);
+
+has current_dir => (
+	is => 'ro',
+	lazy => 1,
+	builder => sub { path(".") },
+);
+
+has debug => (
+	is => 'ro',
+	lazy => 1,
+	builder => sub { $ENV{YEB_TRACE} || $ENV{YEB_DEBUG} ? 1 : 0 },
 );
 
 has package_stash => (
@@ -85,6 +109,9 @@ sub add_middleware {
 sub BUILD {
 	my ( $self ) = @_;
 
+	$self->root;
+	$self->current_dir;
+
 	$self->package_stash->add_symbol('$yeb',\$self);
 	
 	Web::Simple->import::into($self->class);
@@ -93,9 +120,9 @@ sub BUILD {
 		my ( undef, $env ) = @_;
 		$self->reset_context;
 		my $context = Yeb::Context->new( env => $env );
-		$self->current_context($context);
+		$self->cc($context);
 		return $self->y_main->chain,
-			'/...' => sub { $self->current_context->response };
+			'/...' => sub { $self->cc->response };
 	});
 
 	$self->yeb_import($self->class);
@@ -105,12 +132,17 @@ sub BUILD {
 		my $target = caller;
 		$self->yeb_import($target, $alias);
 	});
+
+	if ($self->debug) {
+		$self->add_middleware(Plack::Middleware::Debug->new);
+	}
 }
 
-has current_context => (
+has cc => (
 	is => 'rw',
 	clearer => 'reset_context',
 );
+sub current_context { shift->cc }
 
 sub yeb_import {
 	my ( $self, $target ) = @_;
@@ -132,9 +164,9 @@ sub register_function {
 	}
 }
 
-
-
 1;
+
+
 __END__
 =pod
 
@@ -144,7 +176,22 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.002
+version 0.003
+
+=head1 SUPPORT
+
+IRC
+
+  Join #web-simple on irc.perl.org. Highlight Getty for fast reaction :).
+
+Repository
+
+  http://github.com/Getty/p5-yeb
+  Pull request and additional contributors are welcome
+
+Issue Tracker
+
+  http://github.com/Getty/p5-yeb/issues
 
 =head1 AUTHOR
 

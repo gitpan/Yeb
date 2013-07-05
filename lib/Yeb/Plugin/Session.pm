@@ -3,8 +3,9 @@ BEGIN {
   $Yeb::Plugin::Session::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Session::VERSION = '0.002';
+  $Yeb::Plugin::Session::VERSION = '0.003';
 }
+# ABSTRACT: Yeb Plugin for Plack::Middleware::Session
 
 use Moo;
 use Plack::Middleware::Session;
@@ -19,22 +20,39 @@ sub BUILD {
 	));
 	$self->app->register_function('session',sub {
 		my $key = shift;
-		return $self->app->current_context->env->{'psgix.session'} unless defined $key;
-		return $self->app->current_context->env->{'psgix.session'}->{$key};
+		return $self->app->cc->env->{'psgix.session'} unless defined $key;
+		return $self->app->cc->env->{'psgix.session'}->{$key};
 	});
 }
 
 1;
+
+
 __END__
 =pod
 
 =head1 NAME
 
-Yeb::Plugin::Session
+Yeb::Plugin::Session - Yeb Plugin for Plack::Middleware::Session
 
 =head1 VERSION
 
-version 0.002
+version 0.003
+
+=head1 SUPPORT
+
+IRC
+
+  Join #web-simple on irc.perl.org. Highlight Getty for fast reaction :).
+
+Repository
+
+  http://github.com/Getty/p5-yeb
+  Pull request and additional contributors are welcome
+
+Issue Tracker
+
+  http://github.com/Getty/p5-yeb/issues
 
 =head1 AUTHOR
 

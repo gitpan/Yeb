@@ -1,10 +1,28 @@
 ==================================================
-Changes from 1739-09-20 00:00:00 +0000 to present.
+Changes from 1739-09-21 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.002 at 2013-07-04 20:36:10 +0000
+version 0.003 at 2013-07-05 02:19:38 +0000
 ------------------------------------------
+
+  Change: 8c8419a8052513fa0ae525b45fcabb73b2380196
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 04:15:11 +0000
+
+    Little helper 
+
+  Change: c034ddbea8b5e71f2d3dc124ea0cea651572ffb2
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 04:04:37 +0000
+
+    Cleaning cleaning cleaning.... 
+
+  Change: 4fe6f4b675cb0eed3715e888f8e6096b9483d821
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 02:57:06 +0000
+
+    Xslate plugin and tests for this, all just recommends 
 
   Change: 02f2426d94edd950aa18430b83db5cca5f11d52c
   Author: Torsten Raudssus <torsten@raudss.us>

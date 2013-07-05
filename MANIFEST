@@ -5,6 +5,7 @@ META.json
 META.yml
 Makefile.PL
 README
+bin/yeb
 dist.ini
 lib/Yeb.pm
 lib/Yeb/Application.pm
@@ -12,8 +13,14 @@ lib/Yeb/Class.pm
 lib/Yeb/Context.pm
 lib/Yeb/Plugin/JSON.pm
 lib/Yeb/Plugin/Session.pm
+lib/Yeb/Plugin/Xslate.pm
 t/base.t
 t/lib/WebTest.pm
 t/lib/WebTest/Bla.pm
+t/lib/WebXslate.pm
 t/load.t
 t/release-pod-syntax.t
+t/templates/index.tx
+t/templates/index/test.tx
+t/templates/page.tx
+t/xslate.t

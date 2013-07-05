@@ -14,18 +14,22 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Yeb
+recommends:
+  JSON: 2.59
+  Plack::Middleware::Session: 0.20
+  Text::Xslate: 2.0007
 requires:
   Class::Load: 0.20
   Import::Into: 1.001001
-  JSON: 2.59
   Package::Stash: 0.34
+  Path::Tiny: 0.024
   Plack: 1.0028
-  Plack::Middleware::Session: 0.20
+  Plack::Middleware::Debug: 0.14
   Web::Simple: 0.020
 resources:
   homepage: https://github.com/Getty/p5-yeb
   repository: https://github.com/Getty/p5-yeb.git
-version: 0.002
+version: 0.003
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -169,6 +173,14 @@ x_Dist_Zilla:
           phase: runtime
           type: requires
       name: Prereqs
+      version: 4.300035
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: runtime
+          type: recommends
+      name: Recommends
       version: 4.300035
     -
       class: Dist::Zilla::Plugin::Prereqs

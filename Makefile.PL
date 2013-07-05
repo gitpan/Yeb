@@ -16,23 +16,25 @@ my %WriteMakefileArgs = (
     "ExtUtils::MakeMaker" => "6.30"
   },
   "DISTNAME" => "Yeb",
-  "EXE_FILES" => [],
+  "EXE_FILES" => [
+    "bin/yeb"
+  ],
   "LICENSE" => "perl",
   "NAME" => "Yeb",
   "PREREQ_PM" => {
     "Class::Load" => "0.20",
     "Import::Into" => "1.001001",
-    "JSON" => "2.59",
     "Package::Stash" => "0.34",
+    "Path::Tiny" => "0.024",
     "Plack" => "1.0028",
-    "Plack::Middleware::Session" => "0.20",
+    "Plack::Middleware::Debug" => "0.14",
     "Web::Simple" => "0.020"
   },
   "TEST_REQUIRES" => {
     "Test::LoadAllModules" => "0.021",
     "Test::More" => "0.98"
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => "t/*.t"
   }
