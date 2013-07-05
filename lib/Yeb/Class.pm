@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Class::VERSION = '0.005';
+  $Yeb::Class::VERSION = '0.006';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
 
@@ -82,7 +82,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SUPPORT
 

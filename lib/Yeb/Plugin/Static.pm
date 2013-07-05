@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::Static::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Static::VERSION = '0.005';
+  $Yeb::Plugin::Static::VERSION = '0.006';
 }
 # ABSTRACT: Yeb Plugin for Plack::Middleware::Static
 
@@ -83,7 +83,30 @@ Yeb::Plugin::Static - Yeb Plugin for Plack::Middleware::Static
 
 =head1 VERSION
 
-version 0.005
+version 0.006
+
+=head1 SYNOPSIS
+
+  package MyYeb;
+
+  use Yeb;
+
+  BEGIN {
+    plugin 'Static', default_root => root('htdocs');
+  }
+
+  static qr{^/};
+  static_404 qr{^/images/}, root('htdocs');
+
+  1;
+
+=encoding utf8
+
+=head1 FRAMEWORK FUNCTIONS
+
+=head2 static
+
+=head2 static_404
 
 =head1 SUPPORT
 

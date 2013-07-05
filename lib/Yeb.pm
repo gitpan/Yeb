@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.005';
+  $Yeb::VERSION = '0.006';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -29,7 +29,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.005
+version 0.006
 
 =head1 SYNOPSIS
 
@@ -42,7 +42,7 @@ version 0.005
   }
 
   r "/" => sub {
-    session->{test} = pa('test');
+    session test => pa('test');
     text "root";
   };
 
@@ -51,7 +51,7 @@ version 0.005
   };
 
   r "/test/..." => sub {
-    st->{stash_var} = 1;
+    st stash_var => 1;
     chain 'Test';
   };
 
@@ -62,13 +62,13 @@ version 0.005
 
   r "/json" => sub {
     json {
-      test => session->{test},
-      stash_var => st->{stash_var},
+      test => session('test'),
+      stash_var => st('stash_var'),
     }
   };
 
   r "/" => sub {
-    text " test = ".session->{test}." and blub is ".st->{stash_var};
+    text " test = ".session('test')." and blub is ".st('stash_var');
   };
 
   1;
@@ -87,16 +87,16 @@ Or a L<Text::Xslate> example:
     plugin 'Session';
     plugin 'JSON';
     plugin 'Xslate';
-    plugin 'Static';
+    plugin 'Static', default_root => root('htdocs');
   }
 
   xslate_path root('templates');
 
-  static qr{^/}, root('htdocs');
-  static_404 qr{^/images/}, root('htdocs');
+  static qr{^/};
+  static_404 qr{^/images/}, root('htdocs_images');
 
   r "/" => sub {
-    st->{page} = 'root';
+    st page => 'root';
     xslate 'index';
   };
 
@@ -161,7 +161,7 @@ Access to the stash hash
 
 Access to the request parameters, gives back "" if is not set
 
-=head2 has_pa
+=head2 pa_has
 
 Check if some parameter is at all set
 
@@ -195,7 +195,7 @@ Template output via L<Text::Xslate>
 
 =item L<Yeb::Plugin::JSON>
 
-JSON Output via L<JSON>
+JSON output via L<JSON>
 
 =back
 

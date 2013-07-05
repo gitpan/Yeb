@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::Session::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Session::VERSION = '0.005';
+  $Yeb::Plugin::Session::VERSION = '0.006';
 }
 # ABSTRACT: Yeb Plugin for Plack::Middleware::Session
 
@@ -19,9 +19,10 @@ sub BUILD {
 		store => Plack::Session::Store::File->new
 	));
 	$self->app->register_function('session',sub {
-		my $key = shift;
-		return $self->app->cc->env->{'psgix.session'} unless defined $key;
-		return $self->app->cc->env->{'psgix.session'}->{$key};
+		$self->app->hash_accessor_empty($self->app->cc->env->{'psgix.session'},@_);
+	});
+	$self->app->register_function('session_has',sub {
+		$self->app->hash_accessor_has($self->app->cc->env->{'psgix.session'},@_);
 	});
 }
 
@@ -37,7 +38,27 @@ Yeb::Plugin::Session - Yeb Plugin for Plack::Middleware::Session
 
 =head1 VERSION
 
-version 0.005
+version 0.006
+
+=head1 SYNOPSIS
+
+  package MyYeb;
+
+  use Yeb;
+
+  BEGIN {
+    plugin 'Session';
+  }
+
+  1;
+
+=encoding utf8
+
+=head1 FRAMEWORK FUNCTIONS
+
+=head2 session
+
+=head2 session_has
 
 =head1 SUPPORT
 

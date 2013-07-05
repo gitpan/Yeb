@@ -3,14 +3,13 @@ BEGIN {
   $Yeb::Plugin::Xslate::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Xslate::VERSION = '0.005';
+  $Yeb::Plugin::Xslate::VERSION = '0.006';
 }
 # ABSTRACT: Yeb Plugin for Text::Xslate
 
 use Moo;
 use Carp;
 use Text::Xslate;
-use Hash::Merge qw( merge );
 
 has app => ( is => 'ro', required => 1 );
 has class => ( is => 'ro', required => 1 );
@@ -106,21 +105,11 @@ has base_functions => (
 	},
 );
 
-sub merge_hashs {
-	my ( $self, @hashs ) = @_;
-	my $first = pop @hashs;
-	while (@hashs) {
-		my $next = pop @hashs;
-		$first = merge($first,$next);
-	}
-	return $first;
-}
-
 sub get_vars {
 	my ( $self, $user_vars ) = @_;
 	my %stash = %{$self->app->cc->stash};
 	my %user = defined $user_vars ? %{$user_vars} : ();
-	return $self->merge_hashs(
+	return $self->app->merge_hashs(
 		$self->app->cc->export,
 		$self->app->cc->stash,
 		\%user
@@ -160,7 +149,40 @@ Yeb::Plugin::Xslate - Yeb Plugin for Text::Xslate
 
 =head1 VERSION
 
-version 0.005
+version 0.006
+
+=head1 SYNOPSIS
+
+  package MyYeb;
+
+  use Yeb;
+
+  BEGIN {
+    plugin 'Xslate';
+  }
+
+  xslate_path root('templates');
+
+  r "/" => sub {
+    st page => 'root';
+    xslate 'index';
+  };
+
+  xslate_function myq => sub {
+    "The parameter q contains ".pa('q');	
+  };
+
+  1;
+
+=encoding utf8
+
+=head1 FRAMEWORK FUNCTIONS
+
+=head2 xslate
+
+=head2 xslate_path
+
+=head2 xslate_function
 
 =head1 SUPPORT
 

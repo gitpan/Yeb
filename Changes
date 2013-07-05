@@ -3,8 +3,14 @@ Changes from 1739-09-21 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.005 at 2013-07-05 20:09:30 +0000
+version 0.006 at 2013-07-05 20:35:33 +0000
 ------------------------------------------
+
+  Change: 4efc5bc22e61302791451cf6694920fd4565fd99
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 22:34:50 +0000
+
+    More dos2unix, more documentation, more more more!!! 
 
   Change: 36e48ceaadebfaa40e1422511242d28ed97a407d
   Author: Torsten Raudssus <torsten@raudss.us>
