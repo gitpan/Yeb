@@ -29,7 +29,7 @@ requires:
 resources:
   homepage: https://github.com/Getty/p5-yeb
   repository: https://github.com/Getty/p5-yeb.git
-version: 0.003
+version: 0.004
 x_Dist_Zilla:
   perl:
     version: 5.014002

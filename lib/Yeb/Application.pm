@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.003';
+  $Yeb::Application::VERSION = '0.004';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -122,7 +122,10 @@ sub BUILD {
 		my $context = Yeb::Context->new( env => $env );
 		$self->cc($context);
 		return $self->y_main->chain,
-			'/...' => sub { $self->cc->response };
+			'/...' => sub {
+				$self->cc->status(500);
+				$self->cc->response;
+			};
 	});
 
 	$self->yeb_import($self->class);
@@ -176,7 +179,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SUPPORT
 

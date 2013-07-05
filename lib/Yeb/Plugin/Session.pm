@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::Session::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Session::VERSION = '0.003';
+  $Yeb::Plugin::Session::VERSION = '0.004';
 }
 # ABSTRACT: Yeb Plugin for Plack::Middleware::Session
 
@@ -37,7 +37,7 @@ Yeb::Plugin::Session - Yeb Plugin for Plack::Middleware::Session
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SUPPORT
 

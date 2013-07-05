@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Class::VERSION = '0.003';
+  $Yeb::Class::VERSION = '0.004';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
 
@@ -55,6 +55,17 @@ sub BUILD {
 		}
 		load_class($class) unless is_class_loaded($class);
 		return $self->app->y($class)->chain;
+	});
+
+	$self->add_function('load',sub {
+		my $class = shift;
+		if ($class =~ m/^\+/) {
+			$class =~ s/^(\+)//;
+		} else {
+			$class = $self->app->class.'::'.$class;
+		}
+		load_class($class) unless is_class_loaded($class);
+		return $class;
 	});
 
 	$self->add_function('cfg',sub {
@@ -130,7 +141,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SUPPORT
 

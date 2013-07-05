@@ -3,8 +3,21 @@ Changes from 1739-09-21 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.003 at 2013-07-05 02:19:38 +0000
+version 0.004 at 2013-07-05 04:02:00 +0000
 ------------------------------------------
+
+  Change: 00deb809722bb346e3e5e4889ba824d8fb250528
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 06:00:28 +0000
+
+    Added static tests for base, moved over to better test form, added
+    load() command for loading chainless controller 
+
+  Change: 23d6ff567343180b781b153ba4afaf9354e0947a
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-05 05:50:08 +0000
+
+    Added Yeb::Plugin::Static, fixed EOL 
 
   Change: 8c8419a8052513fa0ae525b45fcabb73b2380196
   Author: Torsten Raudssus <torsten@raudss.us>
