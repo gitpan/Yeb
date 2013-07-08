@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Class::VERSION = '0.007';
+  $Yeb::Class::VERSION = '0.008';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
 
@@ -58,6 +58,12 @@ has yeb_class_functions => (
 	},
 );
 
+sub call {
+	my ( $self, $func, @args ) = @_;
+	return $self->yeb_class_functions->{$func}->(@_) if defined $self->yeb_class_functions->{$func};
+	return $self->app->call($func,@args);
+}
+
 sub BUILD {
 	my ( $self ) = @_;
 
@@ -82,7 +88,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SUPPORT
 

@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.007';
+  $Yeb::Application::VERSION = '0.008';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -17,6 +17,7 @@ use Path::Tiny qw( path );
 use Plack::Middleware::Debug;
 use List::Util qw( reduce );
 use Hash::Merge qw( merge );
+use Carp;
 
 use Web::Simple ();
 
@@ -148,6 +149,13 @@ has yeb_functions => (
 	},
 );
 
+sub call {
+	my ( $self, $func, @args ) = @_;
+	return $self->functions->{$func}->(@_) if defined $self->functions->{$func};
+	return $self->yeb_functions->{$func}->(@_) if defined $self->yeb_functions->{$func};
+	croak "Unknown function ".$func." inside ".(ref $self)." application";
+}
+
 sub class_loader {
 	my ( $self, $class ) = @_;
 	if ($class =~ m/^\+/) {
@@ -251,7 +259,6 @@ sub BUILD {
 	if ($self->debug) {
 		$self->add_middleware(Plack::Middleware::Debug->new);
 	}
-	my $funcs = [$self->package_stash->list_all_symbols];
 }
 
 my $cc;
@@ -292,7 +299,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SUPPORT
 

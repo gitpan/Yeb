@@ -1,10 +1,61 @@
 ==================================================
-Changes from 1739-09-21 00:00:00 +0000 to present.
+Changes from 1739-09-24 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.007 at 2013-07-05 23:13:28 +0000
+version 0.008 at 2013-07-08 01:24:23 +0000
 ------------------------------------------
+
+  Change: 4f7dd30693cff23ffdd1586018c78b3046ca84fa
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-08 03:20:37 +0000
+
+    Nicer example code 
+
+  Change: 46779b1ff88a731b12e7f5c4072b099f8af282cb
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 20:20:14 +0000
+
+    Bugfix 
+
+  Change: 97039efd52daab98a4ce3f482584c505e7740089
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 17:57:31 +0000
+
+    Added more proper README, added call function for plugins to call
+    framework functions 
+
+  Change: 239026746d59641fd584aa474956546b7b02737e
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 08:55:27 +0000
+
+    Merge pull request #1 from chankeypathak/master
+
+    Have a README file getty! 
+
+  Change: 2518e0810e058bdbd2394e04ef83ab9df31b1e79
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 04:09:02 +0000
+
+    Doc tuning 
+
+  Change: 2e0ef97100962660c9a4eedab42291d6b2e7c347
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 03:32:55 +0000
+
+    More tuning on the test cases in combination with other yeb app 
+
+  Change: d3cfc66083f1ce23290db3f0f785f92b0ecaf9a3
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 03:19:26 +0000
+
+    Removed load test... 
+
+  Change: 19801d1de7db1b312445f407bddedac41cd2c96d
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-06 01:49:32 +0000
+
+    Removed some old debugging, added predicate for response values 
 
   Change: 3a8335feaa730f502a3434dcd6c25b7405938a64
   Author: Torsten Raudssus <torsten@raudss.us>
@@ -30,6 +81,20 @@ version 0.007 at 2013-07-05 23:13:28 +0000
   Date : 2013-07-05 22:04:21 +0000
 
     Added export, normalized functions, more proper hash merge and access 
+
+  Change: e756a932b95b06e0ed57cac5d6964fbc8fd486f9
+  Author: Chankey Pathak <chankey007@gmail.com>
+  Date : 2013-07-05 10:01:48 +0000
+
+    Update README.pod 
+
+  Change: 112973833fda431f9215a755ecf876e4ebfca93c
+  Author: Chankey Pathak <chankey007@gmail.com>
+  Date : 2013-07-05 10:00:35 +0000
+
+    Create README.pod
+
+    Add a README getty 
 
   Change: 00deb809722bb346e3e5e4889ba824d8fb250528
   Author: Torsten Raudssus <torsten@raudss.us>

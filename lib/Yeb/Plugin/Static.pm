@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::Static::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Static::VERSION = '0.007';
+  $Yeb::Plugin::Static::VERSION = '0.008';
 }
 # ABSTRACT: Yeb Plugin for Plack::Middleware::Static
 
@@ -83,7 +83,7 @@ Yeb::Plugin::Static - Yeb Plugin for Plack::Middleware::Static
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 

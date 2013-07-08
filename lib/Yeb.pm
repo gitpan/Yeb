@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.007';
+  $Yeb::VERSION = '0.008';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -32,7 +32,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -82,9 +82,16 @@ version 0.007
 
 Can then be started like (see L<Web::Simple>):
 
-  plackup -MMyApp::Web -e'MyApp::Web->run_if_script'
+  plackup -Ilib -MMyApp::Web -e'MyApp::Web->run_if_script'
 
-Or a L<Text::Xslate> example:
+or use the B<yeb> CLI tool which automatically also loads up B<./lib> as path
+for easy handling:
+
+  yeb MyApp::Web
+
+Additional parameters get dispatched towards L<plackup>
+
+Bigger L<Text::Xslate> example:
 
   package MyApp::WebXslate;
 
@@ -108,7 +115,7 @@ Or a L<Text::Xslate> example:
   };
 
   r "/test" => sub {
-    st->{page} = 'test';
+    st page => 'test';
     xslate 'index/test', { extra_var => 'extra' };
   };
 
@@ -117,6 +124,12 @@ Or a L<Text::Xslate> example:
 =head1 DESCRIPTION
 
 =encoding utf8
+
+=head1 WARNING
+
+B<ALPHA> This web framework is made to be used for B<YACT>, a new version of
+the Act conference system. With the release of B<YACT> the API will be
+stabilized. B<ALPHA>
 
 =head1 PLUGINS
 
