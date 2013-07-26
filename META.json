@@ -57,10 +57,10 @@
          "web" : "https://github.com/Getty/p5-yeb"
       }
    },
-   "version" : "0.008",
+   "version" : "0.009",
    "x_Dist_Zilla" : {
       "perl" : {
-         "version" : "5.014002"
+         "version" : "5.018000"
       },
       "plugins" : [
          {
@@ -166,12 +166,12 @@
          {
             "class" : "Dist::Zilla::Plugin::GithubMeta",
             "name" : "@Author::GETTY/GithubMeta",
-            "version" : "0.28"
+            "version" : "0.30"
          },
          {
             "class" : "Dist::Zilla::Plugin::TravisCI",
             "name" : "@Author::GETTY/TravisCI",
-            "version" : "0.003"
+            "version" : "0.002"
          },
          {
             "class" : "Dist::Zilla::Plugin::InstallRelease",
@@ -202,7 +202,7 @@
          {
             "class" : "Dist::Zilla::Plugin::ChangelogFromGit",
             "name" : "@Author::GETTY/ChangelogFromGit",
-            "version" : "0.006"
+            "version" : "0.007"
          },
          {
             "class" : "Dist::Zilla::Plugin::PodWeaver",

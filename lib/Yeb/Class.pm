@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Class::VERSION = '0.008';
+  $Yeb::Class::VERSION = '0.009';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
 
@@ -49,7 +49,28 @@ has yeb_class_functions => (
 		{
 			plugin => sub { $self->app->add_plugin($self->class,@_) },
 
-			r => sub { $self->add_to_chain(@_) },
+			r => sub { $self->add_to_chain(@_); return; },
+			route => sub { $self->yeb_class_functions->{'r'}->(@_) },
+
+			pr => sub {
+				my $route = shift;
+				my $post_route;
+				if (ref $_[0] eq 'CODE') {
+					$post_route = "POST";
+				} else {
+					$post_route = "POST + ".(shift);
+				}
+				my $post_func = shift;
+				my @args = @_;
+				$self->add_to_chain($route, sub {
+					return $post_route, sub {
+						shift; $post_func->(@_); return;
+					}, @args;
+				});
+				return;
+			},
+			post_route => sub { $self->yeb_class_functions->{'pr'}->(@_) },
+
 			middleware => sub {
 				my $middleware = shift;
 				$self->prepend_to_chain( "" => sub { $middleware } );
@@ -78,8 +99,8 @@ sub BUILD {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -88,7 +109,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SUPPORT
 
@@ -117,4 +138,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Context::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Context::VERSION = '0.008';
+  $Yeb::Context::VERSION = '0.009';
 }
 # ABSTRACT: Storage for context of request
 
@@ -74,8 +74,8 @@ sub response {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -84,7 +84,7 @@ Yeb::Context - Storage for context of request
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SUPPORT
 
@@ -113,4 +113,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

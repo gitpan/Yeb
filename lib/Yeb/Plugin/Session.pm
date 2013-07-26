@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::Session::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::Session::VERSION = '0.008';
+  $Yeb::Plugin::Session::VERSION = '0.009';
 }
 # ABSTRACT: Yeb Plugin for Plack::Middleware::Session
 
@@ -28,8 +28,8 @@ sub BUILD {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -38,7 +38,7 @@ Yeb::Plugin::Session - Yeb Plugin for Plack::Middleware::Session
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -87,4 +87,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

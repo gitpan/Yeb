@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.008';
+  $Yeb::VERSION = '0.009';
 }
 # ABSTRACT: Yep! Yeb is for web! Yep Yep!
 
@@ -22,8 +22,8 @@ sub import { shift;
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -32,7 +32,7 @@ Yeb - Yep! Yeb is for web! Yep Yep!
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SYNOPSIS
 
@@ -246,4 +246,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

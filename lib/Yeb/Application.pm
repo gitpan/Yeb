@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.008';
+  $Yeb::Application::VERSION = '0.009';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -116,10 +116,11 @@ has yeb_functions => (
 
 			chain => sub {
 				my $class = $self->class_loader(shift);
-				$class->yeb->y($class)->chain;
+				return $class->yeb->y($class)->chain;
 			},
 			load => sub {
 				my $class = $self->class_loader(shift);
+				return;
 			},
 
 			cfg => sub { $self->config },
@@ -128,21 +129,23 @@ has yeb_functions => (
 
 			cc => sub { $self->cc },
 			env => sub { $self->cc->env },
-			req => sub { $self->cc->req },
-			st => sub { $self->hash_accessor($self->cc->stash,@_) },
-			ex => sub { $self->hash_accessor($self->cc->export,@_) },
+			req => sub { $self->cc->request },
+			st => sub { $self->hash_accessor_empty($self->cc->stash,@_) },
+			st_has => sub { $self->hash_accessor_has($self->cc->stash,@_) },
+			ex => sub { $self->hash_accessor_empty($self->cc->export,@_) },
+			ex_has => sub { $self->hash_accessor_has($self->cc->export,@_) },
 			pa => sub { $self->hash_accessor_empty($self->cc->request->params,@_) },
 			pa_has => sub { $self->hash_accessor_has($self->cc->request->params,@_) },
 
 			text => sub {
 				$self->cc->content_type('text/plain');
-				$self->cc->body(@_);
+				$self->cc->body(join(" ",@_));
 				$self->cc->response;
 			},
 
 			html_body => sub {
 				$self->cc->content_type('text/html');
-				$self->cc->body('<html><body>'.@_.'</body></html>');
+				$self->cc->body('<html><body>'.join(" ",@_).'</body></html>');
 				$self->cc->response;
 			},
 		}
@@ -289,8 +292,8 @@ sub register_function {
 
 1;
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -299,7 +302,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.008
+version 0.009
 
 =head1 SUPPORT
 
@@ -328,4 +331,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

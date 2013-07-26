@@ -1,10 +1,34 @@
 ==================================================
-Changes from 1739-09-24 00:00:00 +0000 to present.
+Changes from 1739-10-12 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.008 at 2013-07-08 01:24:23 +0000
+version 0.009 at 2013-07-26 16:20:04 +0000
 ------------------------------------------
+
+  Change: 189d9868f31e4b778b998e2357022c00038c1bef
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-26 12:19:48 +0000
+
+    Added pr feature 
+
+  Change: c754282b748b0c3b38bf0cfbe2725b7b14401d32
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-26 10:18:05 +0000
+
+    Yeah same to html 
+
+  Change: cdcba76c11d549828d7f649fb4f2664bbdad048f
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-26 10:16:06 +0000
+
+    Extended text function 
+
+  Change: 45559debeee13ff6c3fba59bdc5d53c04db934c6
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-26 09:12:18 +0000
+
+    Fixed wrong call to request 
 
   Change: 4f7dd30693cff23ffdd1586018c78b3046ca84fa
   Author: Torsten Raudssus <torsten@raudss.us>
