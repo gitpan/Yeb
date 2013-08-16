@@ -3,12 +3,13 @@ BEGIN {
   $Yeb::Context::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Context::VERSION = '0.009';
+  $Yeb::Context::VERSION = '0.010';
 }
 # ABSTRACT: Storage for context of request
 
 use Moo;
 use Plack::Request;
+use URI;
 
 has env => (
 	is => 'ro',
@@ -36,8 +37,25 @@ has header => (
 has request => (
 	is => 'ro',
 	lazy => 1,
-	builder => sub { Plack::Request->new(shift->env) }
+	builder => sub { Plack::Request->new(shift->env) },
+	handles => [qw(
+		base
+	)],
 );
+
+has uri_base => (
+	is => 'rw',
+	lazy => 1,
+	builder => sub { shift->req->base },
+);
+
+sub uri_for { # TODO supporting several args and hash as args
+	my($self, $path, $args) = @_;
+	my $uri = $self->uri_base;
+	$uri->path($uri->path . $path);
+	$uri->query_form(@$args) if $args;
+	$uri;
+}
 
 has status => (
 	is => 'rw',
@@ -84,7 +102,7 @@ Yeb::Context - Storage for context of request
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SUPPORT
 

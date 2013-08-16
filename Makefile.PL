@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Yep! Yeb is for web! Yep Yep!",
+  "ABSTRACT" => "A simple structure for Web::Simple applications",
   "AUTHOR" => "Torsten Raudssus <torsten\@raudss.us>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -22,20 +22,22 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Yeb",
   "PREREQ_PM" => {
-    "Class::Load" => "0.20",
-    "Hash::Merge" => "0.12",
-    "Import::Into" => "1.001001",
-    "Package::Stash" => "0.34",
-    "Path::Tiny" => "0.024",
-    "Plack" => "1.0028",
-    "Plack::Middleware::Debug" => "0.14",
-    "Web::Simple" => "0.020"
+    "Class::Load" => 0,
+    "Hash::Merge" => 0,
+    "Import::Into" => 0,
+    "List::MoreUtils" => 0,
+    "Package::Stash" => 0,
+    "Path::Tiny" => 0,
+    "Plack" => 0,
+    "Plack::Middleware::Debug" => 0,
+    "URL::Encode" => 0,
+    "Web::Simple" => 0
   },
   "TEST_REQUIRES" => {
     "Test::LoadAllModules" => "0.021",
     "Test::More" => "0.98"
   },
-  "VERSION" => "0.009",
+  "VERSION" => "0.010",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -1,10 +1,40 @@
 ==================================================
-Changes from 1739-10-12 00:00:00 +0000 to present.
+Changes from 1739-11-02 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.009 at 2013-07-26 16:20:04 +0000
+version 0.010 at 2013-08-16 02:24:19 +0000
 ------------------------------------------
+
+  Change: 86e40e73f09d823a600b12b7c25db5b150120ada
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-08-16 04:06:32 +0000
+
+    Hups 
+
+  Change: 71d15ad5a67c8a8583e3962939762f05bc49c920
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-08-15 20:44:01 +0000
+
+    Better name ;) 
+
+  Change: aa8163fc821e173a3848e3b100ffcfd40ade0714
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-29 14:31:24 +0000
+
+    WIP 
+
+  Change: 3e11185868cc890530b1db0e20d55b75850b407e
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-28 07:06:48 +0000
+
+    "destabilized" version requirements 
+
+  Change: 170d999f535d0d610dc5d2da673b9c2c4fa60951
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-07-27 09:14:41 +0000
+
+    Added URL making helper 
 
   Change: 189d9868f31e4b778b998e2357022c00038c1bef
   Author: Torsten Raudssus <torsten@raudss.us>

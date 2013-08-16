@@ -3,9 +3,9 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.009';
+  $Yeb::VERSION = '0.010';
 }
-# ABSTRACT: Yep! Yeb is for web! Yep Yep!
+# ABSTRACT: A simple structure for Web::Simple applications
 
 use strict;
 use warnings;
@@ -28,11 +28,11 @@ __END__
 
 =head1 NAME
 
-Yeb - Yep! Yeb is for web! Yep Yep!
+Yeb - A simple structure for Web::Simple applications
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SYNOPSIS
 

@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.009';
+  $Yeb::Application::VERSION = '0.010';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -17,6 +17,9 @@ use Path::Tiny qw( path );
 use Plack::Middleware::Debug;
 use List::Util qw( reduce );
 use Hash::Merge qw( merge );
+use URL::Encode qw( url_encode_utf8 );
+use List::MoreUtils qw(any);
+
 use Carp;
 
 use Web::Simple ();
@@ -130,16 +133,39 @@ has yeb_functions => (
 			cc => sub { $self->cc },
 			env => sub { $self->cc->env },
 			req => sub { $self->cc->request },
+			uri_for => sub { $self->cc->uri_for(@_) },
 			st => sub { $self->hash_accessor_empty($self->cc->stash,@_) },
 			st_has => sub { $self->hash_accessor_has($self->cc->stash,@_) },
 			ex => sub { $self->hash_accessor_empty($self->cc->export,@_) },
 			ex_has => sub { $self->hash_accessor_has($self->cc->export,@_) },
-			pa => sub { $self->hash_accessor_empty($self->cc->request->params,@_) },
-			pa_has => sub { $self->hash_accessor_has($self->cc->request->params,@_) },
+			pa => sub { $self->hash_accessor_empty($self->cc->request->parameters,@_) },
+			pa_has => sub { $self->hash_accessor_has($self->cc->request->parameters,@_) },
+
+			url => sub {
+				my @parts = $self->flat(@_);
+				my ( @path_parts, @hashs );
+				for (@parts) {
+					if (ref $_ eq 'HASH') {
+						push @hashs, $_;
+					} else {
+						push @path_parts, $_;
+					}
+				}
+				my $url = $self->cc->url_base;
+				if (@path_parts) {
+					$url .= join("/",map { url_encode_utf8($_) } @path_parts);
+				}
+				if (@hashs) {
+					$url .= '?';
+					my $gets = $self->merge_hashs(reverse @hashs);
+					$url .= join("&",map { $_.'='.url_encode_utf8($gets->{$_}) } keys %{$gets});
+				}
+				return $url;
+			},
 
 			text => sub {
 				$self->cc->content_type('text/plain');
-				$self->cc->body(join(" ",@_));
+				$self->cc->body(join("\n",@_));
 				$self->cc->response;
 			},
 
@@ -218,16 +244,6 @@ sub add_middleware {
 	$self->y_main->prepend_to_chain( "" => sub { $middleware } );
 }
 
-sub merge_hashs {
-	my ( $self, @hashs ) = @_;
-	my $first = pop @hashs;
-	while (@hashs) {
-		my $next = pop @hashs;
-		$first = merge($first,$next);
-	}
-	return $first;
-}
-
 sub BUILD {
 	my ( $self ) = @_;
 
@@ -239,6 +255,13 @@ sub BUILD {
 	$self->package_stash->add_symbol('$yeb',\$self);
 	
 	Web::Simple->import::into($self->class);
+
+	$self->package_stash->add_symbol('&register_has',sub {
+		my ( $attr, @args ) = @_;
+		my @attrs = ref $attr eq 'ARRAY' ? @{$attr} : ($attr);
+		$self->register_function($_, $self->class->can($_)) for @attrs;
+		$self->class->can('has')->($attr, @args);
+	});
 	
 	$self->package_stash->add_symbol('&dispatch_request',sub {
 		my ( undef, $env ) = @_;
@@ -254,9 +277,9 @@ sub BUILD {
 	$self->yeb_import($self->class);
 
 	$self->package_stash->add_symbol('&import',sub {
-		my ( $class, $alias ) = @_;
+		my ( $class ) = @_;
 		my $target = caller;
-		$self->yeb_import($target, $alias);
+		$self->yeb_import($target);
 	});
 
 	if ($self->debug) {
@@ -290,6 +313,28 @@ sub register_function {
 	}
 }
 
+sub flat {
+	my ( $self, $list, @seen_lists ) = @_;
+	if (ref $list ne 'ARRAY') {
+	  return $list;
+	} elsif (any { $_ == $list } @seen_lists) {
+	  return;
+	} else {
+	  push @seen_lists, $list;
+	  return map { $self->flat($_, @seen_lists) } @{$list};
+	}
+}
+
+sub merge_hashs {
+	my ( $self, @hashs ) = @_;
+	my $first = pop @hashs;
+	while (@hashs) {
+		my $next = pop @hashs;
+		$first = merge($first,$next);
+	}
+	return $first;
+}
+
 1;
 
 __END__
@@ -302,7 +347,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.009
+version 0.010
 
 =head1 SUPPORT
 
