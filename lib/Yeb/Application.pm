@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Application::VERSION = '0.010';
+  $Yeb::Application::VERSION = '0.011';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
 
@@ -29,6 +29,10 @@ my $first_yep_application;
 has class => (
 	is => 'ro',
 	required => 1,
+);
+
+has app => (
+	is => 'rw',
 );
 
 has first => (
@@ -117,6 +121,8 @@ has yeb_functions => (
 		{
 			yeb => sub { $self },
 
+			app => sub { $self->app },
+
 			chain => sub {
 				my $class = $self->class_loader(shift);
 				return $class->yeb->y($class)->chain;
@@ -131,7 +137,7 @@ has yeb_functions => (
 			cur => sub { path($self->current_dir,@_) },
 
 			cc => sub { $self->cc },
-			env => sub { $self->cc->env },
+			env => sub { $self->hash_accessor($self->cc->env,@_) },
 			req => sub { $self->cc->request },
 			uri_for => sub { $self->cc->uri_for(@_) },
 			st => sub { $self->hash_accessor_empty($self->cc->stash,@_) },
@@ -264,7 +270,8 @@ sub BUILD {
 	});
 	
 	$self->package_stash->add_symbol('&dispatch_request',sub {
-		my ( undef, $env ) = @_;
+		my ( $app, $env ) = @_;
+		$self->app($app);
 		$self->reset_context;
 		$self->set_cc(Yeb::Context->new( env => $env ));
 		return $self->y_main->chain,
@@ -347,7 +354,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.010
+version 0.011
 
 =head1 SUPPORT
 
