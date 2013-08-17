@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::VERSION = '0.011';
+  $Yeb::VERSION = '0.012';
 }
 # ABSTRACT: A simple structure for Web::Simple applications
 
@@ -32,7 +32,7 @@ Yeb - A simple structure for Web::Simple applications
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 

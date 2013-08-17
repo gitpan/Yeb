@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Plugin::JSON::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Plugin::JSON::VERSION = '0.011';
+  $Yeb::Plugin::JSON::VERSION = '0.012';
 }
 # ABSTRACT: Yeb Plugin for JSON response
 
@@ -45,7 +45,7 @@ Yeb::Plugin::JSON - Yeb Plugin for JSON response
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SYNOPSIS
 

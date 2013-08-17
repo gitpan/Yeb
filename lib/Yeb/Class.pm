@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 {
-  $Yeb::Class::VERSION = '0.011';
+  $Yeb::Class::VERSION = '0.012';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
 
@@ -51,6 +51,14 @@ has yeb_class_functions => (
 
 			r => sub { $self->add_to_chain(@_); return; },
 			route => sub { $self->yeb_class_functions->{'r'}->(@_) },
+
+			nop => sub (&) {
+				my ( $code ) = @_;
+				return sub {
+					$code->(@_);
+					return;
+				};
+			},
 
 			pr => sub {
 				my $route = shift;
@@ -109,7 +117,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.011
+version 0.012
 
 =head1 SUPPORT
 

@@ -3,8 +3,16 @@ Changes from 1739-11-03 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.011 at 2013-08-17 07:48:46 +0000
+version 0.012 at 2013-08-17 23:38:22 +0000
 ------------------------------------------
+
+  Change: ecabb88f0b76420f0f3ed5cd4c1aad810e8f811c
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2013-08-18 01:37:46 +0000
+
+    Added hostname function, added "nop" function which is made for
+    getting subs which definitly return nothing (like a chain step who is
+    not meant to be an end) 
 
   Change: d4ab8af19175f22cabacc3ac0fe5df45a8536db7
   Author: Torsten Raudssus <torsten@raudss.us>
