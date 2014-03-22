@@ -2,11 +2,8 @@ package Yeb::Context;
 BEGIN {
   $Yeb::Context::AUTHORITY = 'cpan:GETTY';
 }
-{
-  $Yeb::Context::VERSION = '0.012';
-}
 # ABSTRACT: Storage for context of request
-
+$Yeb::Context::VERSION = '0.100';
 use Moo;
 use Plack::Request;
 use URI;
@@ -38,15 +35,12 @@ has request => (
 	is => 'ro',
 	lazy => 1,
 	builder => sub { Plack::Request->new(shift->env) },
-	handles => [qw(
-		base
-	)],
 );
 
 has uri_base => (
 	is => 'rw',
 	lazy => 1,
-	builder => sub { shift->req->base },
+	builder => sub { shift->request->base },
 );
 
 sub uri_for { # TODO supporting several args and hash as args
@@ -84,7 +78,7 @@ sub response {
 		$self->status,
 		[
 			content_type => $self->content_type,
-			map { $_, $self->header->{_} } keys %{$self->header}
+			%{$self->header},
 		],
 		[ $self->body ]
 	]
@@ -102,7 +96,7 @@ Yeb::Context - Storage for context of request
 
 =head1 VERSION
 
-version 0.012
+version 0.100
 
 =head1 SUPPORT
 

@@ -2,11 +2,8 @@ package Yeb::Class;
 BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
-{
-  $Yeb::Class::VERSION = '0.012';
-}
 # ABSTRACT: Meta Class for all Yeb application classes
-
+$Yeb::Class::VERSION = '0.100';
 use Moo;
 use Package::Stash;
 use Class::Load ':all';
@@ -117,7 +114,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.012
+version 0.100
 
 =head1 SUPPORT
 

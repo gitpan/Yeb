@@ -2,11 +2,8 @@ package Yeb::Application;
 BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
-{
-  $Yeb::Application::VERSION = '0.012';
-}
 # ABSTRACT: Main Meta Class for a Yeb Application
-
+$Yeb::Application::VERSION = '0.100';
 use Moo;
 use Package::Stash;
 use Import::Into;
@@ -159,7 +156,7 @@ has yeb_functions => (
 						push @path_parts, $_;
 					}
 				}
-				my $url = $self->cc->url_base;
+				my $url = $self->cc->uri_base;
 				if (@path_parts) {
 					$url .= join("/",map { url_encode_utf8($_) } @path_parts);
 				}
@@ -169,6 +166,13 @@ has yeb_functions => (
 					$url .= join("&",map { $_.'='.url_encode_utf8($gets->{$_}) } keys %{$gets});
 				}
 				return $url;
+			},
+
+			redirect => sub {
+				$self->cc->header->{'Location'} = $_[0];
+				$self->cc->content_type('text/html');
+				$self->cc->body('<html><head><meta http-equiv="refresh" content="0; url='.$_[0].'" /></head><body></body></html>');
+				$self->cc->response;
 			},
 
 			text => sub {
@@ -270,6 +274,10 @@ sub BUILD {
 		$self->register_function($_, $self->class->can($_)) for @attrs;
 		$self->class->can('has')->($attr, @args);
 	});
+
+	$self->package_stash->add_symbol('&register_function',sub {
+		$self->register_function(@_);
+	});
 	
 	$self->package_stash->add_symbol('&dispatch_request',sub {
 		my ( $app, $env ) = @_;
@@ -356,7 +364,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.012
+version 0.100
 
 =head1 SUPPORT
 
