@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Application::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: Main Meta Class for a Yeb Application
-$Yeb::Application::VERSION = '0.101';
+$Yeb::Application::VERSION = '0.102';
 use Moo;
 use Package::Stash;
 use Import::Into;
@@ -147,7 +147,7 @@ has yeb_functions => (
 			pa_has => sub { $self->hash_accessor_has($self->cc->request->parameters,@_) },
 
 			url => sub {
-				my @parts = $self->flat(@_);
+				my @parts = $self->flat([@_]);
 				my ( @path_parts, @hashs );
 				for (@parts) {
 					if (ref $_ eq 'HASH') {
@@ -168,16 +168,21 @@ has yeb_functions => (
 				return $url;
 			},
 
-			redirect => sub {
-				$self->cc->header->{'Location'} = $_[0];
-				$self->cc->content_type('text/html');
-				$self->cc->body('<html><head><meta http-equiv="refresh" content="0; url='.$_[0].'" /></head><body></body></html>');
-				$self->cc->response;
-			},
-
 			text => sub {
 				$self->cc->content_type('text/plain');
 				$self->cc->body(join("\n",@_));
+				$self->cc->response;
+			},
+
+			redirect => sub {
+				my ( $target, $code ) = shift;
+				$code = 307 unless $code;
+				$self->cc->content_type('text/html');
+				$self->cc->header->{location} = $target;
+				$self->cc->body(<<"__REDIRECT__");
+<html><head><title>Moved</title><meta http-equiv="refresh" content="0; url=$target"></head>
+<body><h1>Moved</h1><p>This page has moved to <a href="$target">$target</a>.</p></body></html>
+__REDIRECT__
 				$self->cc->response;
 			},
 
@@ -302,6 +307,15 @@ sub BUILD {
 	if ($self->debug) {
 		$self->add_middleware(Plack::Middleware::Debug->new);
 	}
+
+	my @args = $self->has_args ? ( @{$self->args} ) : ();
+
+	while (@args) {
+		my $plugin = shift @args;
+		my $plugin_args = ref $args[0] eq 'HASH'
+			? shift @args : {};
+		$self->add_plugin($self->class,$plugin,%{$plugin_args});
+	}
 }
 
 my $cc;
@@ -364,7 +378,7 @@ Yeb::Application - Main Meta Class for a Yeb Application
 
 =head1 VERSION
 
-version 0.101
+version 0.102
 
 =head1 SUPPORT
 

@@ -1,10 +1,70 @@
 ==================================================
-Changes from 1740-06-07 00:00:00 +0000 to present.
+Changes from 1740-09-20 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.101 at 2014-03-22 23:09:02 +0000
+version 0.102 at 2014-07-05 19:56:04 +0000
 ------------------------------------------
+
+  Change: cd6c9cedc48c4ac170bba3dcc7358db43f3868c6
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:55:10 +0000
+
+    Fixed rights 
+
+  Change: 1e5256153746f636db64b394113144db1655503a
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:54:54 +0000
+
+    Added abstract to yeb executable 
+
+  Change: 508aa7cf0aad52f01d9ec7c6ed5c39b58221c9ab
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:53:59 +0000
+
+    Fixed a little bug 
+
+  Change: 9a70f37497ce7c7441e7324cb68c3c55716f37c4
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:50:02 +0000
+
+    Changed warning, changed support channel 
+
+  Change: 22c3cc53c0379a4644cf0b5b3a1b5160aeb5e03d
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:47:21 +0000
+
+    Added load test 
+
+  Change: a0419ef3ef017e150ca97eb6c2905857718b39ad
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:44:58 +0000
+
+    Merge branch 'master' of github.com:Getty/p5-yeb 
+
+  Change: 6005350ebb470edd32e6c4960847e0262252e5fa
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-07-05 21:44:16 +0000
+
+    Changes for new version of pluginbundle in use 
+
+  Change: 8bc9299a3f3efa7794b7f8e74bf7cd266719a8d0
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-03-25 09:58:44 +0000
+
+    Better redirect implementation 
+
+  Change: 838be6f84cf62be5529dcd68c96397812d3fd84d
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-03-25 11:07:49 +0000
+
+    Fixed rights 
+
+  Change: 96b75614141dbcbe8cf06f3b95a4c2dc9b39fde5
+  Author: Torsten Raudssus <torsten@raudss.us>
+  Date : 2014-03-25 11:07:25 +0000
+
+    Added plugin loading via import 
 
   Change: 8442e105823eca0efdbe0cd3c84a2b7d4cfe1560
   Author: Torsten Raudssus <torsten@raudss.us>

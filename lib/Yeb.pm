@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: A simple structure for Web::Simple applications
-$Yeb::VERSION = '0.101';
+$Yeb::VERSION = '0.102';
 use strict;
 use warnings;
 
@@ -29,17 +29,12 @@ Yeb - A simple structure for Web::Simple applications
 
 =head1 VERSION
 
-version 0.101
+version 0.102
 
 =head1 SYNOPSIS
 
   package MyApp::Web;
-  use Yeb;
-
-  BEGIN {
-    plugin 'Session';
-    plugin 'JSON';
-  }
+  use Yeb qw( Session JSON );
 
   r "/" => sub {
     session test => pa('test');
@@ -86,20 +81,20 @@ for easy handling:
 
   yeb MyApp::Web
 
+You can also add additional parameter B<after> the class name:
+
+  yeb MyApp::Web -Imore/lib
+
 Additional parameters get dispatched towards L<plackup>
 
 Bigger L<Text::Xslate> example:
 
   package MyApp::WebXslate;
 
-  use Yeb;
+  use Yeb Session => JSON => 'Xslate';
 
-  BEGIN {
-    plugin 'Session';
-    plugin 'JSON';
-    plugin 'Xslate';
-    plugin 'Static', default_root => root('htdocs');
-  }
+  # because of the root() usage we need to use plugin function call
+  plugin Static => { default_root => root('htdocs') };
 
   xslate_path root('templates');
 
@@ -120,13 +115,16 @@ Bigger L<Text::Xslate> example:
 
 =head1 DESCRIPTION
 
+You need to install L<Task::Yeb> to get all the plugin functionalities. L<Yeb>
+itself is bare.
+
 =encoding utf8
 
-=head1 WARNING
+=head1 WARNING / ALPHA
 
-B<ALPHA> This web framework is made to be used for B<YACT>, a new version of
-the Act conference system. With the release of B<YACT> the API will be
-stabilized. B<ALPHA>
+B<WARNING:> I don't advice using it without staying in contact with me
+(B<Getty>) at B<#sycontent> on B<irc.perl.org>. While the core API will stay
+stable, the way how to extend the system will change with the time.
 
 =head1 PLUGINS
 
@@ -182,37 +180,37 @@ Access to the request parameters, gives back "" if is not set
 
 Check if some parameter is at all set
 
-=head2 r
+=head2 r (or route)
 
 Adding a new dispatcher for this class (see L<Web::Simple>)
+
+=head2 pr (or post_route)
+
+Adding a new dispatcher for this class who only reacts on B<POST>.
 
 =head2 middleware
 
 Adding a L<Plack::Middleware> to the flow
 
+=head2 url
+
+Get an url, via joining all parameters url encoded 
+
 =head2 text
 
 Make a simple B<text/plain> response with the text given as parameter
+
+=head2 redirect
+
+Make a simple redirect to the url given as parameter
 
 =head1 SEE ALSO
 
 =over 4
 
-=item L<Yeb::Plugin::Session>
+=item L<Task::Yeb>
 
-Session management via L<Plack::Middleware::Session>
-
-=item L<Yeb::Plugin::Static>
-
-Static files via L<Plack::Middleware::Static>
-
-=item L<Yeb::Plugin::Xslate>
-
-Template output via L<Text::Xslate>
-
-=item L<Yeb::Plugin::JSON>
-
-JSON output via L<JSON>
+Overview of all approved plugins
 
 =back
 
@@ -220,7 +218,7 @@ JSON output via L<JSON>
 
 IRC
 
-  Join #web-simple on irc.perl.org. Highlight Getty for fast reaction :).
+  Join #sycontent on irc.perl.org. Highlight Getty for fast reaction :).
 
 Repository
 
