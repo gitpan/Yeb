@@ -53,7 +53,7 @@
          "web" : "https://github.com/Getty/p5-yeb"
       }
    },
-   "version" : "0.102",
+   "version" : "0.103",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018001"

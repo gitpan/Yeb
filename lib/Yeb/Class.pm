@@ -3,7 +3,7 @@ BEGIN {
   $Yeb::Class::AUTHORITY = 'cpan:GETTY';
 }
 # ABSTRACT: Meta Class for all Yeb application classes
-$Yeb::Class::VERSION = '0.102';
+$Yeb::Class::VERSION = '0.103';
 use Moo;
 use Package::Stash;
 use Class::Load ':all';
@@ -114,7 +114,7 @@ Yeb::Class - Meta Class for all Yeb application classes
 
 =head1 VERSION
 
-version 0.102
+version 0.103
 
 =head1 SUPPORT
 
